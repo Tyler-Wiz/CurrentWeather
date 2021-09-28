@@ -1,60 +1,73 @@
-// form.addEventListener('submit', (e) => {
-//   e.preventDefault()
-//   let lat;
-//   let lon;
-//   const inputLocation = document.getElementById('location_input')
-//   const pasteError = document.getElementById('error')
 
-//   if (navigator.geolocation) {
-//     navigator.geolocation.watchPosition(position => {
-//         lat = position.coords.latitude
-//         lon = position.coords.longitude
-//         const apiCall = 'https://api.openweathermap.org/data/2.5/weather/?q=london&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd'
-//         fetch(apiCall)
-//         .then(res => {
-//           if(res.ok){
-//             return res.json()
-//         } else {
-//             throw new Error("location is not available")
-//         }})
-//         .then(data => {
-//            const result = document.getElementById('results')
-//             let html=""
-//             let temperature = data.main
-//             const {temp} = temperature
-//              html = `
-//                <h3 class="temp">The current Temperature in ${lon} ${lat} is</h3>
-//                <h2>${temp} C</h2>
-//              `
-//              result.innerHTML = html
-//         }).catch(error => {
-//             pasteError.textContent = error
-//         });
-//     });
-//   } 
-// })
+   let lat;
+   let lon;
+  const pasteError = document.getElementById('error')
 
-fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q=abuja&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd')
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(position => {
+        lat = position.coords.latitude
+        lon = position.coords.longitude
+        fetch('https://api.openweathermap.org/data/2.5/forecast/daily?lat='+lat+'&lon='+lon+'&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd')
     .then(res => {
       if(res.ok){
         return res.json()
       } else {
-        throw new Err
+        throw new Error("No coordinates Found")
       }
     }).then(data => {
       const listDays = data.list
       const fiveDays = listDays.slice(1,7)
       const [one, two, three, four, five, six] = fiveDays
       let condition = []
+      
 
+      const forecast = document.querySelectorAll('#temp')
+      forecast.forEach((cast, index) => {
+            switch(index){
+              case 0:
+                cast.textContent = `${one.temp.day}  C` 
+              break;
+              case 1:
+                cast.textContent = `${two.temp.day} C`
+              break;
+              case 2:
+                cast.textContent = `${three.temp.day} C`
+              break;
+              case 3:
+                cast.textContent = `${four.temp.day} C`
+              break;
+              case 4:
+                cast.textContent = `${five.temp.day} C`
+              break;
+              case 5:
+                cast.textContent = `${six.temp.day} C`
+              break;
+            }
+      })
+       
       let dayOne = listDays[0]
       let todayTemp = dayOne.temp.day
-      let todayWeather = dayOne
+      let todayWeather = dayOne.weather[0].description
 
-   console.log(dayOne)
+      const dayWeather = document.querySelector('#weather_today')
+      document.querySelector('#tempOne').textContent = `${todayTemp} C`
+      
+     if(todayWeather === 'moderate rain'){
+           dayWeather.classList.add('rain')
+          } else if(todayWeather === 'light rain'){
+            dayWeather.classList.add('rain')
+          } else if(todayWeather === 'broken clouds'){
+            dayWeather.classList.add('cloudy')
+          } else if(todayWeather === 'overcast clouds'){
+            dayWeather.classList.add('overcast')
+          } else if(todayWeather === 'sky is clear'){
+            dayWeather.classList.add('sunny')
+          } else if(todayWeather === 'scattered clouds'){
+            dayWeather.classList.add('scattered')
+          } 
+ 
 
-     document.querySelector('#tempOne').textContent = todayTemp
-
+     
 
       for(let five of fiveDays){
         let weather = five.weather
@@ -62,7 +75,6 @@ fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q=abuja&units=metr
           condition.push(weathers.description)
        }
       }
-
 
       const icons = document.querySelectorAll('#icon')  
       
@@ -173,7 +185,16 @@ fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q=abuja&units=metr
           }
 
        })
-    })
+    }).catch(error => {
+      pasteError.textContent = error
+      });
+  }) 
+} else {
+    alert("You did'nt Give Access to Know Your location")
+}
+
+
+
 
  
 
