@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 10px;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+}
+
 body{
     width: 70%;
     margin: 4rem auto;
@@ -11,38 +19,63 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    font-size: 1.6rem;
+    background-color: rgba(240, 240, 240, 0.548);
 }
 
-form{
-    width: 100%;
+.today{
+    margin-bottom: 10rem;
+}
+
+.weeks {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 3rem;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
 }
 
-.button{
-    border: none;
-    padding: 1rem;
-    color: white;
-    background-color: steelblue;
-    width: 30%;
+#determine_day{
+    margin-bottom: 5rem;
 }
 
-input[type='text']{
-    padding: 1rem 1rem;
-    outline: none;
-    width: 70%;
-    text-transform: capitalize;
+.cloudy{
+    width: 10rem;
+    height: 10rem;
+    background-image: url(img/cloudy.png);
+    background-repeat: no-repeat;
 }
 
-.results{
-    width: 100%;
-    height: 40vh;
-    border: 1px solid rgb(5, 13, 36);
-    padding: 2rem;
+.rain{
+    width: 10rem;
+    height: 10rem;
+    background-image: url(img/rain.png);
+    background-repeat: no-repeat;
 }
 
-.temp{
-    margin-bottom: 1rem;
-    text-transform: capitalize;
+.overcast{
+    width: 10rem;
+    height: 10rem;
+    background-image: url(img/overcastday.png);
+    background-repeat: no-repeat;
 }
+
+.sunny{
+    width: 10rem;
+    height: 10rem;
+    background-image: url(img/sunny.png);
+    background-repeat: no-repeat;
+}
+
+.scattered{
+    width: 10rem;
+    height: 10rem;
+    background-image: url(img/scatteredCloud.png);
+    background-repeat: no-repeat;
+}
+
+
+/* #icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
