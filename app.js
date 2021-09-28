@@ -1,10 +1,8 @@
-
-  let lat;
-  let lon;
-  const pasteError = document.getElementById('error')
-  const form = document.querySelector('#form')
+const pasteError = document.getElementById('error')
+const form = document.querySelector('#form')
 
  form.addEventListener('submit', (e) => {
+       let condition = []
        const inputLocation = document.querySelector('#input_Location')
        e.preventDefault()
       fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q='+inputLocation.value+'&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd')
@@ -18,7 +16,7 @@
         const listDays = data.list
         const fiveDays = listDays.slice(1,7)
         const [one, two, three, four, five, six] = fiveDays
-        let condition = []
+        
         
         document.querySelector('#today_date').innerHTML = ` In ${inputLocation.value}`
 
@@ -68,17 +66,15 @@
             } 
    
   
-       
-  
-        for(let five of fiveDays){
-          let weather = five.weather
+        for(let main of fiveDays){
+          let weather = main.weather
           for(let weathers of weather) {
             condition.push(weathers.description)
          }
         }
-  
+
+
         const icons = document.querySelectorAll('#icon')  
-        
         icons.forEach((icon, index) => {
             //day one //
             if(index === 0){
@@ -185,21 +181,17 @@
                 } 
             }
             
-            dayOfWeek()
+             dayOfWeek()
          })
          inputLocation.value = ''
         
       }).catch(error => {
         pasteError.textContent = error
         });
+
+        pasteError.textContent = ''
     }) 
   
-
-
-
-
- 
-
   function dayOfWeek() {
     let d = new Date();
     let weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];

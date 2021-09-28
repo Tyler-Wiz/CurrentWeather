@@ -14,6 +14,14 @@ h1,h2,h3,h4,h5,h6{
     margin: 0;
 }
 
+h2{
+    text-align: center;
+}
+
+h4{
+    font-size: 1.5rem;
+}
+
 body{
     width: 70%;
     margin: 4rem auto;
@@ -26,19 +34,40 @@ body{
     font-family: 'Montserrat', sans-serif;
 }
 
+.result_container{
+    display: flex;
+    flex-direction: column;
+}
+
 .today{
-    margin-bottom: 10rem;
+    width: 80%;
+    margin-bottom: 7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.8rem;
+    text-transform: capitalize;
+}
+
+.today span{
+    align-items: center;
 }
 
 .weeks {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 3rem;
 }
 
-#determine_day{
-    margin-bottom: 5rem;
+.weeks::before{
+    content: '';
+    width: 400px;
+    height: .1rem;
+    background-color: rgb(139, 139, 139);
+    margin-bottom: 2rem;
 }
 
 .cloudy{
@@ -49,8 +78,8 @@ body{
 }
 
 .rain{
-    width: 10rem;
-    height: 10rem;
+    width: 9rem;
+    height: 9rem;
     background-image: url(img/rain.png);
     background-repeat: no-repeat;
 }
@@ -76,10 +105,16 @@ body{
     background-repeat: no-repeat;
 }
 
+#form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
 input[type="text"]{
     outline: none;
     padding: 1rem 5rem 1rem 2rem;
-    margin: 3rem 0 ;
 }
 
 button{
@@ -91,8 +126,27 @@ button{
     color: rgb(236, 236, 236);
 }
 
-/* #icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+.temp{
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+#weather_Desc{
+    font-size: 1rem;
+}
+
+@media(min-width:750px){
+    .weeks{
+        flex-direction: row;
+    }
+
+    .weeks::before{
+        display: none;
+    }
+
+    #form {
+        flex-direction: row;
+    }
+
+
+}
