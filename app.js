@@ -12,7 +12,7 @@
         if(res.ok){
           return res.json()
         } else {
-          throw new Error("No coordinates Found")
+          throw new Error("Your Location Is Not Recognized")
         }
       }).then(data => {
         const listDays = data.list
@@ -184,7 +184,8 @@
                   icon.classList.add('scattered')
                 } 
             }
-  
+            
+            dayOfWeek()
          })
          inputLocation.value = ''
         
@@ -227,4 +228,3 @@
     })
   }
 
- dayOfWeek()
