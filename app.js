@@ -205,22 +205,22 @@
     daysOfWeek.forEach((day, index) =>{
        switch(index){
           case 0:
-            day.innerHTML = weekday[d.getDay()]
-          break;
-          case 1:
             day.innerHTML = weekday[d.getDay()+1]
           break;
-          case 2:
+          case 1:
             day.innerHTML = weekday[d.getDay()+2]
-          break; 
-          case 3:
+          break;
+          case 2:
             day.innerHTML = weekday[d.getDay()+3]
           break; 
-          case 4:
+          case 3:
             day.innerHTML = weekday[d.getDay()+4]
           break; 
-          case 5:
+          case 4:
             day.innerHTML = weekday[d.getDay()-2]
+          break; 
+          case 5:
+            day.innerHTML = weekday[d.getDay()-1]
           break; 
        }
     })
