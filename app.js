@@ -1,11 +1,18 @@
 const pasteError = document.getElementById('error')
 const form = document.querySelector('#form')
+const inputLocation = document.querySelector('#input_Location')
+const forecast = document.querySelectorAll('#temp')
+const dayWeather = document.querySelector('#weather_today')
+let weatherDescription = document.querySelectorAll('#weather_Desc')
+const icons = document.querySelectorAll('#icon')  
+const weatherToday = document.querySelector('#today_date')
+const temperature_Today = document.querySelector('#tempOne')
+let condition = []
+let desc = []
 
  form.addEventListener('submit', (e) => {
-       let condition = []
-       const inputLocation = document.querySelector('#input_Location')
        e.preventDefault()
-      fetch('https://api.openweathermap.org/data/2.5/forecast/daily?q='+inputLocation.value+'&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd')
+      fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd`)
       .then(res => {
         if(res.ok){
           return res.json()
@@ -13,14 +20,36 @@ const form = document.querySelector('#form')
           throw new Error("Your Location Is Not Recognized")
         }
       }).then(data => {
+
+        // get array of days from Data // 
         const listDays = data.list
+         
+        //get day 2 to 7 //
         const fiveDays = listDays.slice(1,7)
         const [one, two, three, four, five, six] = fiveDays
-        
-        
-        document.querySelector('#today_date').innerHTML = ` In ${inputLocation.value}`
+            
+        // Weather and Icon For Present Day //
 
-        const forecast = document.querySelectorAll('#temp')
+        let todayTemp = listDays[0].temp.day
+        let todayWeather = listDays[0].weather[0].main
+
+        // Add Input value to Html and temperature for Present day // 
+        weatherToday.innerHTML = ` In ${inputLocation.value}`
+        temperature_Today.textContent = `${todayTemp} C`
+     
+        // Condition for Icon for Present Day //
+        if(todayWeather === 'Rain'){
+          dayWeather.classList.add('rain')
+        } else if(todayWeather === 'Clouds'){
+          dayWeather.classList.add('cloudy')
+        } else if(todayWeather === 'Clear'){
+          dayWeather.classList.add('sunny')
+        } 
+
+        // Call Day of The week function // 
+        dayOfWeek()
+
+        // Loop Through array of each day and add temperature for each day // 
         forecast.forEach((cast, index) => {
               switch(index){
                 case 0:
@@ -44,157 +73,130 @@ const form = document.querySelector('#form')
               }
         })
          
-        let dayOne = listDays[0]
-        let todayTemp = dayOne.temp.day
-        let todayWeather = dayOne.weather[0].description
-  
-        const dayWeather = document.querySelector('#weather_today')
-        document.querySelector('#tempOne').textContent = `${todayTemp} C`
-        
-       if(todayWeather === 'moderate rain'){
-             dayWeather.classList.add('rain')
-            } else if(todayWeather === 'light rain'){
-              dayWeather.classList.add('rain')
-            } else if(todayWeather === 'broken clouds'){
-              dayWeather.classList.add('cloudy')
-            } else if(todayWeather === 'overcast clouds'){
-              dayWeather.classList.add('overcast')
-            } else if(todayWeather === 'sky is clear'){
-              dayWeather.classList.add('sunny')
-            } else if(todayWeather === 'scattered clouds'){
-              dayWeather.classList.add('scattered')
-            } 
-   
+
+        let condition = []
+        let desc = []
   
         for(let main of fiveDays){
           let weather = main.weather
           for(let weathers of weather) {
-            condition.push(weathers.description)
+            condition.push(weathers.main)
+            desc.push(weathers.description)
          }
         }
+         
+  
 
+        weatherDescription.forEach((mainDesc,  index) => {
+            switch(index){
+               case 0:
+                mainDesc.innerHTML = `(${desc[0]})`
+               break;
+               case 1:
+                mainDesc.innerHTML = `(${desc[1]})`
+               break;
+               case 2:
+                mainDesc.innerHTML = `(${desc[2]})`
+               break;
+               case 3:
+                mainDesc.innerHTML = `(${desc[3]})`
+               break;
+               case 4:
+                mainDesc.innerHTML = `(${desc[4]})`
+               break;
+               case 5:
+                mainDesc.innerHTML = `(${desc[5]})`
+               break;
+            }
+         })
 
-        const icons = document.querySelectorAll('#icon')  
         icons.forEach((icon, index) => {
             //day one //
             if(index === 0){
-              if(condition[0] === 'moderate rain'){
+              if(condition[0] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[0] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[0] === 'broken clouds'){
+                } else if(condition[0] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[0] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[0] === 'sky is clear'){
+                } else if(condition[0] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[0] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
   
             //day two//
             if(index === 1){
-              if(condition[1] === 'moderate rain'){
+              if(condition[1] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[1] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[1] === 'broken clouds'){
+                } else if(condition[1] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[1] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[1] === 'sky is clear'){
+                } else if(condition[1] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[1] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
   
             //day three //
   
             if(index === 2){
-              if(condition[2] === 'moderate rain'){
+              if(condition[2] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[2] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[2] === 'broken clouds'){
+                 } else if(condition[2] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[2] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[2] === 'sky is clear'){
+                } else if(condition[2] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[2] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
   
              //day four //
   
              if(index === 3){
-              if(condition[3] === 'moderate rain'){
+              if(condition[3] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[3] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[3] === 'broken clouds'){
+                } else if(condition[3] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[3] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[3] === 'sky is clear'){
+                } else if(condition[3] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[3] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
+
               //day five //
   
              if(index === 4){
-              if(condition[4] === 'moderate rain'){
+              if(condition[4] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[4] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[4] === 'broken clouds'){
+                 } else if(condition[4] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[4] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[4] === 'sky is clear'){
+                } else if(condition[4] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[4] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
   
              //day six //
   
              if(index === 5){
-              if(condition[5] === 'moderate rain'){
+              if(condition[5] === 'Rain'){
                   icon.classList.add('rain')
-                 } else if(condition[5] === 'light rain'){
-                  icon.classList.add('rain')
-                } else if(condition[5] === 'broken clouds'){
+                } else if(condition[5] === 'Clouds'){
                   icon.classList.add('cloudy')
-                } else if(condition[5] === 'overcast clouds'){
-                  icon.classList.add('overcast')
-                } else if(condition[5] === 'sky is clear'){
+                } else if(condition[5] === 'Clear'){
                   icon.classList.add('sunny')
-                } else if(condition[5] === 'scattered clouds'){
-                  icon.classList.add('scattered')
                 } 
             }
-            
-             dayOfWeek()
+
          })
+
          inputLocation.value = ''
-        
+         
+
       }).catch(error => {
         pasteError.textContent = error
         });
 
         pasteError.textContent = ''
     }) 
-  
+    
+  // Day of The Week function //
   function dayOfWeek() {
     let d = new Date();
-    let weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let weekday = ['','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const daysOfWeek = document.querySelectorAll('#determine_day')
     daysOfWeek.forEach((day, index) =>{
        switch(index){
@@ -208,7 +210,7 @@ const form = document.querySelector('#form')
             day.innerHTML = weekday[d.getDay()+3]
           break; 
           case 3:
-            day.innerHTML = weekday[d.getDay()+4]
+            day.innerHTML = weekday[d.getDay()+3]
           break; 
           case 4:
             day.innerHTML = weekday[d.getDay()-2]
@@ -220,3 +222,6 @@ const form = document.querySelector('#form')
     })
   }
 
+ 
+
+  
