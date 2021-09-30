@@ -61,6 +61,7 @@ input[type="text"]{
     outline: none;
     padding: 1rem 5rem 1rem 2rem;
     border: .3rem solid rgb(46, 30, 30);
+    background-color: white;
 }
 
 button{
