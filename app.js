@@ -9,6 +9,7 @@ const weatherToday = document.querySelector('#today_date')
 const temperature_Today = document.querySelector('#tempOne')
 const daysOfWeek = document.querySelectorAll('#determine_day')
 
+// form to display the weather // 
  form.addEventListener('submit', (e) => {
        e.preventDefault()
       fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd`)
@@ -63,7 +64,7 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
               }
         })
 
-
+        // loop for Weather description for 6 days forecast //
         weatherDescription.forEach((mainDesc,  index) => {
             switch(index){
                case 0:
@@ -87,6 +88,7 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
             }
          })
 
+         // Loop for icons for 6 days forecast //
         icons.forEach((icon, index) => {
             if(index === 0){
              icon.innerHTML = `<img src="http://openweathermap.org/img/wn/${one.weather[0].icon}@2x.png">`
@@ -107,21 +109,22 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
               icon.innerHTML = `<img src="http://openweathermap.org/img/wn/${six.weather[0].icon}@2x.png">`   
             }
          })
+         // return value to null // 
          inputLocation.value = ''  
       }).catch(error => {
         pasteError.textContent = error
         });
-
+        // Display catch rejection error // 
         pasteError.textContent = ''
     }) 
     
   // Day of The Week function //
+
   function dayOfWeek() {
     function addDays(dateObj, numDays) {
       dateObj.setDate(dateObj.getDate() + numDays);
       return dateObj;
    }
-
     let now = new Date();
     let tomorrow = addDays(new Date(), 1);
     let nexttomorrow = addDays(new Date(), 2);
