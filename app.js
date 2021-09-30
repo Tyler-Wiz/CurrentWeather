@@ -117,49 +117,44 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
     
   // Day of The Week function //
   function dayOfWeek() {
-    let d = new Date();
-    let weekday = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  
+    function addDays(dateObj, numDays) {
+      dateObj.setDate(dateObj.getDate() + numDays);
+      return dateObj;
+   }
+
+    let now = new Date();
+    let tomorrow = addDays(new Date(), 1);
+    let nexttomorrow = addDays(new Date(), 2);
+    let dayAfterNext = addDays(new Date(), 3);
+    let toDaysAfterNext = addDays(new Date(), 4); 
+    let DayFiveAfter = addDays(new Date(), 5);
+    let DaySixAfter = addDays(new Date(), 6);
+
     daysOfWeek.forEach((day, index) =>{
        switch(index){
           case 0:
-            day.innerHTML = weekday[d.getDay()]
+            day.innerHTML = tomorrow.toLocaleDateString('en-US',{ weekday:'long'})
           break;
           case 1:
-            day.innerHTML = weekday[d.getDay()+1]
+            day.innerHTML = nexttomorrow.toLocaleDateString('en-US',{ weekday:'long'})
           break;
           case 2:
-            day.innerHTML = weekday[d.getDay()+2]
+            day.innerHTML = dayAfterNext.toLocaleDateString('en-US',{ weekday:'long'})
           break; 
           case 3:
-            day.innerHTML = weekday[d.getDay()-2]
+            day.innerHTML = toDaysAfterNext.toLocaleDateString('en-US',{ weekday:'long'})
           break; 
           case 4:
-            day.innerHTML = weekday[d.getDay()]
+            day.innerHTML = DayFiveAfter.toLocaleDateString('en-US',{ weekday:'long'})
           break; 
           case 5:
-            day.innerHTML = weekday[d.getDay()]
+            day.innerHTML = DaySixAfter.toLocaleDateString('en-US',{ weekday:'long'})
           break; 
        }
     })
   }
 
 
-function addDays(dateObj, numDays) {
-    dateObj.setDate(dateObj.getDate() + numDays);
-    return dateObj;
- }
-
- let now = new Date();
- var tomorrow = addDays(new Date(), 1);
- var nextWeek = addDays(new Date(), 7);
-
- console.log(nextWeek.toLocaleDateString('en-US',{ weekday:'long'}))
  
-console.log(
-     'Today: ' + now +
-     '\nTomorrow: ' + tomorrow +
-     '\nNext week: ' + nextWeek
- );
 
  
