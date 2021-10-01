@@ -8,7 +8,7 @@ const icons = document.querySelectorAll('#icon')
 const weatherToday = document.querySelector('#today_date')
 const temperature_Today = document.querySelector('#tempOne')
 const daysOfWeek = document.querySelectorAll('#determine_day')
-const key = config.SECRET_API_KEY;
+const key = SECRET_API_KEY;
 
 console.log(key)
 
