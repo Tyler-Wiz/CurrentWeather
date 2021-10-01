@@ -6,67 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
-    
     <title>Current Weather</title>
 </head>
+
 <body>
-  <div class="form_container">
-      <h2>Search Weather By City or Country</h2>
-      <form id="form">
-        <input type="text" name="" id="input_Location" placeholder="(e.g) London">
-        <button type="submit">Search Location</button>
-      </form>
-  </div>
-    
-
-     <div id="today" class="today">
-         <h2 id="today_date"></h2>
-         <div id="weather_today"></div>
-         <span class="temp" id="tempOne"></span>
-     </div>
-
-
-      <div class="weeks">
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-        <div id="today" class="today">
-            <h4 id="determine_day"></h4>
-            <div id="icon"></div>
-            <span class="temp" id="temp"></span>
-            <div id="weather_Desc"></div>
-        </div>
-      </div>
-
+    <div class="form_container">
+        <h2>Search Weather By City or Country</h2>
+        <form id="form">
+            <input type="text" name="" id="input_Location" placeholder="(e.g) London">
+            <button type="submit">Search Location</button>
+        </form>
+    </div>
+    <div id="today"></div>
+    <div id="six_days"></div>
     <div id="error">
     </div>
-
 </body>
 </html>

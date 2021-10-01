@@ -26,10 +26,6 @@ body{
     margin: 0 auto;
     padding:0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     font-size: 1.3rem;
     background-color: rgba(255, 255, 255, 0.548);
     font-family: 'Montserrat', sans-serif;
@@ -72,56 +68,35 @@ button{
     background-color: rgb(77, 160, 156);
 }
 
-.location{
-    justify-content: flex-start;
-}
-
-.result_container{
-    display: flex;
-    flex-direction: column;
-}
-
-.today{
-    width: 80%;
-    margin-bottom: 7rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1.8rem;
-    text-transform: capitalize;
-}
-
-.today span{
-    align-items: center;
-}
-
-.weeks {
-   width: 100%;
-   display: grid;
-   grid-template-columns: repeat(3, 1fr);
-   grid-template-rows: repeat(2, 1fr);
+#today{
+    margin-bottom: 10rem;
 }
 
 
+#six_days{
+    display: grid;
+    grid-template: repeat(2, 1fr) / repeat(3, 1fr);
+    row-gap: 5rem;
+}
 
 .temp{
-    font-size: 1.7rem;
-    font-weight: 700;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     font-weight: 700;
+     text-transform: capitalize;
 }
 
-#weather_Desc{
-    font-size: 1rem;
+.temp p {
+    margin-top: 1rem;
 }
 
 @media(min-width:750px){
-    .weeks{
+    #six_days{
         display: flex;
         flex-direction: row;
-    }
-
-    .weeks::before{
-        display: none;
+        justify-content: space-around;
     }
 
     input[type="text"]{
