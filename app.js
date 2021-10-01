@@ -3,16 +3,19 @@ const form = document.querySelector('#form')
 const inputLocation = document.querySelector('#input_Location')
 const forecast = document.querySelectorAll('#temp')
 const dayWeather = document.querySelector('#weather_today')
-let weatherDescription = document.querySelectorAll('#weather_Desc')
+const weatherDescription = document.querySelectorAll('#weather_Desc')
 const icons = document.querySelectorAll('#icon')  
 const weatherToday = document.querySelector('#today_date')
 const temperature_Today = document.querySelector('#tempOne')
 const daysOfWeek = document.querySelectorAll('#determine_day')
+const key = config.SECRET_API_KEY;
+
+console.log(key)
 
 // form to display the weather // 
  form.addEventListener('submit', (e) => {
        e.preventDefault()
-      fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd`)
+      fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=${key}`)
       .then(res => {
         if(res.ok){
           return res.json()
@@ -156,8 +159,3 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
        }
     })
   }
-
-
- 
-
- 

@@ -55,12 +55,6 @@ body{
     text-shadow: 2px 2px 2px gray;
 }
 
-#form{
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-}
-
 input[type="text"]{
     width: 300px;
     outline: none;
@@ -72,7 +66,7 @@ input[type="text"]{
 
 button{
     border: none;
-    padding: 1.2rem 1.6rem;
+    padding: 1.2rem 1.2rem;
     font-size: 1.3rem;
     font-weight: 600;
     background-color: rgb(77, 160, 156);
@@ -128,10 +122,6 @@ button{
 
     .weeks::before{
         display: none;
-    }
-
-    #form {
-        flex-direction: row;
     }
 
     input[type="text"]{
