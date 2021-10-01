@@ -14,8 +14,8 @@ console.log(key)
 
 // form to display the weather // 
  form.addEventListener('submit', (e) => {
-       e.preventDefault()
-      fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=b6ea019473b1df46a1fa1dac301537dd`)
+      e.preventDefault()
+      fetch(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${inputLocation.value}&units=metric&appid=${key}`)
       .then(res => {
         if(res.ok){
           return res.json()
