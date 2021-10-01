@@ -34,7 +34,7 @@ const daysOfWeek = document.querySelectorAll('#determine_day')
          <img src="http://openweathermap.org/img/wn/${daysData[0].weather[0].icon}@2x.png">
         `
         // Add Input value to Html and temperature for Present day // 
-        weatherToday.innerHTML = ` In ${inputLocation.value}`
+        weatherToday.innerHTML = `Weather Today In ${inputLocation.value}`
         temperature_Today.textContent = `${todayTemp}°C`  
      
         // Call Day of The week function // 
