@@ -87,6 +87,8 @@ form.addEventListener('submit', (e) => {
         <p>(${dayWeatherDescription[6]})</p>
       </div>
       `
+      inputLocation.value = ' '
   })
+  
 })
 
